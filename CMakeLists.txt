@@ -61,8 +61,17 @@ endif()
 
 FIND_PACKAGE (Threads)
 
+if (${GDAL_LIBRARY_DIR})
+  message("Searching GDAL library in provided ${GDAL_LIBRARY_DIR}")
+endif()
+
+MESSAGE( STATUS "GDAL_LIBRARY_DIR:     "  ${GDAL_LIBRARY_DIR})
+MESSAGE( STATUS "GDAL_INCLUDE_DIR:     "  ${GDAL_INCLUDE_DIR})
+MESSAGE( STATUS "GDAL_LIBRARY:     "  ${GDAL_LIBRARY})
+MESSAGE( STATUS "GDAL_VERSION:     "  ${GDAL_VERSION})
+
 # We need GDAL
-find_package(GDAL)
+find_package(GDAL 2.1.0)
 if(NOT GDAL_FOUND)
   message(FATAL_ERROR "The GDAL library cannot be found on the system")
 endif()

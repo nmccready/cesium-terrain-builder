@@ -1,13 +1,5 @@
-# Ensure we have a unified GDAL: `GDALOpenEx` is only present after
-# unification.
-include(CheckLibraryExists)
-if (${GDAL_LIBRARY_DIR})
-  message("Searching GDAL library in provided ${GDAL_LIBRARY_DIR}")
-endif()
-
-check_library_exists(gdal GDALOpenEx "${GDAL_LIBRARY_DIR}" HAVE_UNIFIED_GDAL)
-if(NOT MSVC AND NOT HAVE_UNIFIED_GDAL)
-  message(FATAL_ERROR "The GDAL version must be one that implements RFC 46 (GDAL/OGR unification) i.e. >= 2.0.0")
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+set(CMAKE_MACOSX_RPATH 1)
 endif()
 
 # We need zlib
